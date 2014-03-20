@@ -12,7 +12,14 @@ class GeneratePasteTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('pastes', function($table)
+		{
+			$table->increments('id');
+			$table->longText('paste');
+			$table->timestamp('created_on');
+			$table->string('paste_id', 255);
+			$table->string('delete_token', 500);
+		});
 	}
 
 	/**
@@ -22,7 +29,7 @@ class GeneratePasteTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::dropIfExists('pastes');
 	}
 
 }
