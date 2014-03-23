@@ -5,20 +5,63 @@
    ========================================================================== */
 
 
+
 body {
-    background: black;
+    background: #1B2426;
+    color: rgb(221, 221, 221);
+}
+
+.cell {
+    background: #0F1516;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: 1px 2px 30x #000;
+    border-radius: 5px;
+}
+
+.cell-content {
+    margin-bottom:5px;
 }
 
 
+ #paste { 
+     overflow-y: hidden !important; 
+     overflow-x: hidden !important; 
+  }
+
+#sidebar .metadata div {
+    margin-bottom: 10px;
+}
 
 
+.syntaxhighlighter {
+  width: 100% !important;
+  margin: 1em 0 1em 0 !important;
+  position: relative !important;
+  overflow-y: hidden !important;
+  overflow-x: auto !important;
+  font-size: .9em !important;
+}
 
+/* New paste page */
+#pasteform > textarea {
+    background: #1B2426;
+    border: none;
+    font-family: Consolas;
+    width: 100% !important;
+    font-family: 'Inconsolata', 'Courier New', 'Consolas', 'sans-serif' ;
+    font-weight: 300;
+    min-height: 500px;
+    color: #A8FA9D;
+    margin: 0px  5px 5px 5px;
+    box-shadow: inset 0px 0px 9px #12181A;
+}
 
+pre, code {
+    font-family: 'Inconsolata', 'Courier New', 'Consolas', 'sans-serif' ;
+}
 
-
-
-
-
-
-
-
+::-webkit-scrollbar {
+    width: 12px;
+    color: #131313;
+}

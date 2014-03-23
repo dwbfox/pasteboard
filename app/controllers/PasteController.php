@@ -10,7 +10,9 @@ class PasteController extends BaseController {
      * Create paste based on submmited form
      * @return [void] [description]
      */
-    public function createPaste() {}
+    public function createPaste() {
+        return View::make('pasteForm');
+    }
 
 
 /**
@@ -29,7 +31,7 @@ class PasteController extends BaseController {
     public function getPaste($token) {
         $paste = new Paste();
         $p = $paste->getPasteByToken($token);
-        return View::make('home')->with('paste', $p);
+        return View::make('showPaste')->with('paste', $p);
     }
 
 

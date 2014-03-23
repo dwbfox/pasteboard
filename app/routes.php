@@ -18,6 +18,6 @@ Route::get('/', function()
 
 
 Route::pattern('token', '[A-Za-z0-9]+');
-
+Route::get('/paste/new', 'PasteController@createPaste');
 Route::get('/paste/{token}', 'PasteController@getPaste');
 Route::get('/paste/delete/{token}', 'PasteController@deletePaste');

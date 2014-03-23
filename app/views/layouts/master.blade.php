@@ -17,8 +17,11 @@
             padding-bottom: 20px;
         }
     </style>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('main/main.js') }}">
+    <link rel="stylesheet" href="{{ URL::asset('vendor/syntaxhighlighter/styles/shCore.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('vendor/syntaxhighlighter/styles/shCoreRDark.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
 
     <script src="{{ URL::asset('js/vendor/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
 </head>
@@ -26,39 +29,65 @@
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"></a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" role="form">
-                <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
-            </form>
-        </div><!--/.navbar-collapse -->
-    </div>
+
+@include('layouts.toolbar')
+<div class="col-lg-9">
+@yield('content')
 </div>
-@yield('content');
+@include('layouts.sidebar')
+</div>
+
+
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ URL::asset('js/vendor/jquery-1.11.0.min.js') }}'"><\/script>')</script>
-
 <script src="{{ URL::asset('js/vendor/bootstrap.min.js') }}"></script>
-
 <script src="{{ URL::asset('js/plugins.js') }}"></script>
 <script src="{{ URL::asset('js/main.js') }}"></script>
+<!-- Syntax Highlighter -->
+<script src="{{ URL::asset('vendor/syntaxhighlighter/scripts/shCore.js')}}"></script>
+<script src="{{ URL::asset('vendor/syntaxhighlighter/scripts/shAutoLoader.js') }}"></script>
+<script type="text/javascript">
+    function path()
+    {
+        var args = arguments,
+            result = []
+            ;
 
+        for(var i = 0; i < args.length; i++)
+            result.push(args[i].replace('@', '{{ URL::asset('/') }}vendor/syntaxhighlighter/scripts/'  ));
+
+        return result
+    };
+
+    SyntaxHighlighter.autoloader.apply(null, path(
+        'applescript            @shBrushAppleScript.js',
+        'actionscript3 as3      @shBrushAS3.js',
+        'bash shell             @shBrushBash.js',
+        'coldfusion cf          @shBrushColdFusion.js',
+        'cpp c                  @shBrushCpp.js',
+        'c# c-sharp csharp      @shBrushCSharp.js',
+        'css                    @shBrushCss.js',
+        'delphi pascal          @shBrushDelphi.js',
+        'diff patch pas         @shBrushDiff.js',
+        'erl erlang             @shBrushErlang.js',
+        'groovy                 @shBrushGroovy.js',
+        'java                   @shBrushJava.js',
+        'jfx javafx             @shBrushJavaFX.js',
+        'js jscript javascript  @shBrushJScript.js',
+        'perl pl                @shBrushPerl.js',
+        'php                    @shBrushPhp.js',
+        'text plain             @shBrushPlain.js',
+        'py python              @shBrushPython.js',
+        'ruby rails ror rb      @shBrushRuby.js',
+        'sass scss              @shBrushSass.js',
+        'scala                  @shBrushScala.js',
+        'sql                    @shBrushSql.js',
+        'vb vbnet               @shBrushVb.js',
+        'xml xhtml xslt html    @shBrushXml.js'
+    ));
+    SyntaxHighlighter.all();
+</script>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
