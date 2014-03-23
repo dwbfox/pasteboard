@@ -11,7 +11,34 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
-		// $this->call('UserTableSeeder');
+		$paste_count = 10;
+
+		for ($i = 0; $i < $paste_count; $i++) {
+
+			// Generate the paste
+			$examplePaste = new Paste();
+			$examplePaste->paste = <<<PASTE
+				<html>
+					<head>
+					<title>PHP Test</title>
+					</head>
+					<body>
+						<?php echo '<p>Hello World</p>'; ?> 
+					</body>
+				</html>
+PASTE;
+			$examplePaste->token = Str::random(40);
+			$examplePaste->delete_token = Str::random(40);
+			$examplePaste->save();
+
+			// Attach some tags to the new paste
+			$exampleTag = new Tag();
+			$exampleTag->tag = 'PHP';
+			$exampleTag->paste_id = $examplePaste->id;
+			$exampleTag->save();
+		}
+
+
 	}
 
 }

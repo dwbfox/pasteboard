@@ -20,6 +20,7 @@ class GenerateTagTable extends Migration {
                   ->on('pastes')
                   ->onDelete('cascade');
             $table->string('tag');
+            $table->timestamps();
         });
     }
 

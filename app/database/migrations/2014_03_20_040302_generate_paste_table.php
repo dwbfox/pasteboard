@@ -16,8 +16,9 @@ class GeneratePasteTable extends Migration {
 		{
 			$table->increments('id');
 			$table->longText('paste');
+			$table->string('token', 60)->unique();
 			$table->timestamps();
-			$table->string('delete_token', 150)->unique();
+			$table->string('delete_token', 60)->unique();
 		});
 	}
 

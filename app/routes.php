@@ -15,3 +15,9 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+
+Route::pattern('token', '[A-Za-z0-9]+');
+
+Route::get('/paste/{token}', 'PasteController@getPaste');
+Route::get('/paste/delete/{token}', 'PasteController@deletePaste');
