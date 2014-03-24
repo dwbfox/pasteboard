@@ -9,6 +9,14 @@
 body {
     background: #1B2426;
     color: rgb(221, 221, 221);
+    padding-top: 71px;
+    padding-bottom: 23px;
+}
+
+.navbar {
+    background: #1B2426 !important;
+    border: none !important;
+    border-bottom: 1px solid rgb(46, 46, 46) !important;
 }
 
 .cell {
@@ -19,8 +27,13 @@ body {
     border-radius: 5px;
 }
 
-.cell-content {
-    margin-bottom:5px;
+.box-cell {
+    background: #070F11 !important;
+    padding: 10px;
+    box-shadow: 0px 0px 3px #131313;
+    border-radius: 8px;
+    border-bottom: 1px solid rgb(60, 60, 60);
+    border-right: 1px solid #363636;
 }
 
 
@@ -49,10 +62,11 @@ body {
     border: none;
     font-family: Consolas;
     width: 100% !important;
+    padding: 14px;
     font-family: 'Inconsolata', 'Courier New', 'Consolas', 'sans-serif' ;
     font-weight: 300;
     min-height: 500px;
-    color: #A8FA9D;
+    color: #BBD3B8;
     margin: 0px  5px 5px 5px;
     box-shadow: inset 0px 0px 9px #12181A;
 }
@@ -65,3 +79,5 @@ pre, code {
     width: 12px;
     color: #131313;
 }
+
+

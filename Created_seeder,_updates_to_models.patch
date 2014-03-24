@@ -1,0 +1,516 @@
+Index: app/views/layouts/master.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/views/layouts/master.blade.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/views/layouts/master.blade.php	(revision )
+@@ -31,12 +31,13 @@
+ <![endif]-->
+ 
+ @include('layouts.toolbar')
+-<div class="col-lg-9">
++<div class="container">
+-@yield('content')
++    @yield('content')
+-</div>
++
++    <div class="col-md-4">
+-@include('layouts.sidebar')
+-</div>
++    @include('layouts.sidebar')
++    </div>
+-
++</div>
+ 
+ 
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+Index: app/models/Paste.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/models/Paste.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/models/Paste.php	(revision )
+@@ -1,7 +1,7 @@
+ <?php
+ 
+ 
+-class Paste extends Eloquent {
++class Paste extends \Eloquent {
+ 
+     protected $table = 'pastes';
+ 
+\ No newline at end of file
+Index: app/database/migrations/2014_03_20_040328_generate_tag_table.php
+===================================================================
+--- app/database/migrations/2014_03_20_040328_generate_tag_table.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/database/migrations/2014_03_20_040328_generate_tag_table.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
+@@ -1,37 +0,0 @@
+-<?php
+-
+-use Illuminate\Database\Schema\Blueprint;
+-use Illuminate\Database\Migrations\Migration;
+-
+-class GenerateTagTable extends Migration {
+-
+-    /**
+-     * Run the migrations.
+-     *
+-     * @return void
+-     */
+-    public function up()
+-    {
+-        Schema::create('tags', function($table) {
+-            $table->increments('id');
+-            $table->unsignedInteger('paste_id');
+-            $table->foreign('paste_id')
+-                  ->references('id')
+-                  ->on('pastes')
+-                  ->onDelete('cascade');
+-            $table->string('tag');
+-            $table->timestamps();
+-        });
+-    }
+-
+-    /**
+-     * Reverse the migrations.
+-     *
+-     * @return void
+-     */
+-    public function down()
+-    {
+-        //
+-    }
+-
+-}
+Index: app/routes.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/routes.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/routes.php	(revision )
+@@ -17,7 +17,13 @@
+ });
+ 
+ 
++// Paste pages
+ Route::pattern('token', '[A-Za-z0-9]+');
+-Route::get('/paste/new', 'PasteController@createPaste');
+-Route::get('/paste/{token}', 'PasteController@getPaste');
+-Route::get('/paste/delete/{token}', 'PasteController@deletePaste');
++Route::get('/paste/new', 'PasteController@create');
++Route::get('/paste/{token}', 'PasteController@show');
++Route::get('/paste/{token/raw}', 'PasteController@show', array('raw' => true));
++Route::get('/paste/delete/{token}', 'PasteController@delete');
++
++// Tag pages
++Route::pattern('tag', '[A-Za-z0-9+-_]');
++Route::get('tags/{tag}', 'TagController@show');
+\ No newline at end of file
+Index: app/database/seeds/DatabaseSeeder.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/database/seeds/DatabaseSeeder.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/database/seeds/DatabaseSeeder.php	(revision )
+@@ -28,6 +28,8 @@
+ 				</html>
+ PASTE;
+ 			$examplePaste->token = Str::random(40);
++            $examplePaste->private = rand(0, 1);
++            $examplePaste->language = 'PHP';
+ 			$examplePaste->delete_token = Str::random(40);
+ 			$examplePaste->save();
+ 
+\ No newline at end of file
+Index: app/database/migrations/2014_03_20_040302_generate_paste_table.php
+===================================================================
+--- app/database/migrations/2014_03_20_040302_generate_paste_table.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/database/migrations/2014_03_20_040302_generate_paste_table.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
+@@ -1,35 +0,0 @@
+-<?php
+-
+-use Illuminate\Database\Schema\Blueprint;
+-use Illuminate\Database\Migrations\Migration;
+-
+-class GeneratePasteTable extends Migration {
+-
+-	/**
+-	 * Run the migrations.
+-	 *
+-	 * @return void
+-	 */
+-	public function up()
+-	{
+-		Schema::create('pastes', function($table)
+-		{
+-			$table->increments('id');
+-			$table->longText('paste');
+-			$table->string('token', 60)->unique();
+-			$table->timestamps();
+-			$table->string('delete_token', 60)->unique();
+-		});
+-	}
+-
+-	/**
+-	 * Reverse the migrations.
+-	 *
+-	 * @return void
+-	 */
+-	public function down()
+-	{
+-		Schema::dropIfExists('pastes');
+-	}
+-
+-}
+Index: app/controllers/PasteController.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/controllers/PasteController.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/controllers/PasteController.php	(revision )
+@@ -1,44 +1,100 @@
+ <?php
+ 
++class PasteController extends \BaseController {
+ 
++	public $restful = true;
++	/**
++	 * Display a listing of the resource.
++	 *
++	 * @return Response
++	 */
++	public function index()
++	{
++		//
++	}
+ 
+-class PasteController extends BaseController {
+-
+-    public function getPastesByTag($tag) {}
+-
+-    /**
++	/**
+-     * Create paste based on submmited form
+-     * @return [void] [description]
++	 * Show the form for creating a new resource.
++	 *
++	 * @return Response
+-     */
++	 */
+-    public function createPaste() {
++	public function create()
++	{
+-        return View::make('pasteForm');
+-    }
++		return View::make('pasteForm');
++	}
+ 
++	/**
++	 * Store a newly created resource in storage.
++	 *
++	 * @return Response
++	 */
++	public function store()
++	{
++		//
++	}
+ 
+-/**
++	/**
+-     * [updatePaste description]
+-     * @param  [type] $token [description]
+-     * @return [type]        [description]
++	 * Display the specified resource.
++	 *
++	 * @param  str  $token
++	 * @return Response
+-     */
++	 */
+-    public function updatePaste($id) {}
++	public function show($token, $raw = false)
++	{
++		var_dump($raw);
++        // Get the requested paste 
++        $pasteModel = new Paste();
++        $pasteResults = $pasteModel->getPasteByToken($token);
+ 
++        $results = new StdClass;
++        $results->paste = $pasteResults->paste;
++        $results->created_at = $pasteResults->created_at;
+ 
++        // Get the tags for the paste
++        $tagModel = new Tag();
++
++        // Attach it to the paste
++        $tagResults =  $tagModel->getTagByPasteID($pasteResults->id);
++
++        foreach ($tagResults as $key => $tag) {
++            $results->tags[] = $tag->tag;
++        }
++
++        // Render the view
++        return View::make('showPaste')->with('paste', $results);
++	}
++
+-    /**
++	/**
+-     * Show a paste based on the supplied token_name(token)
+-     * @param  [string] $token [description]
+-     * @return [void]        
++	 * Show the form for editing the specified resource.
++	 *
++	 * @param  int  $id
++	 * @return Response
+-     */
++	 */
+-    public function getPaste($token) {
+-        $paste = new Paste();
+-        $p = $paste->getPasteByToken($token);
+-        return View::make('showPaste')->with('paste', $p);
++	public function edit($id)
++	{
++		//
+-    }
++	}
+ 
++	/**
++	 * Update the specified resource in storage.
++	 *
++	 * @param  int  $id
++	 * @return Response
++	 */
++	public function update($id)
++	{
++		//
++	}
+ 
+-    /**
++	/**
+-     * Delete the paste matching the specified token
+-     * @param  [type] $paste_id [description]
+-     * @return [void]           [description]
++	 * Remove the specified resource from storage.
++	 *
++	 * @param  int  $id
++	 * @return Response
+-     */
++	 */
+-    public function deletePaste($id) {}
++	public function destroy($id)
++	{
++		//
++	}
++
+ }
+\ No newline at end of file
+Index: public/css/main.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- public/css/main.css	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ public/css/main.css	(revision )
+@@ -9,8 +9,16 @@
+ body {
+     background: #1B2426;
+     color: rgb(221, 221, 221);
++    padding-top: 71px;
++    padding-bottom: 23px;
+ }
+ 
++.navbar {
++    background: #1B2426 !important;
++    border: none !important;
++    border-bottom: 1px solid rgb(46, 46, 46) !important;
++}
++
+ .cell {
+     background: #0F1516;
+     padding: 5px;
+@@ -19,8 +27,13 @@
+     border-radius: 5px;
+ }
+ 
+-.cell-content {
+-    margin-bottom:5px;
++.box-cell {
++    background: #070F11 !important;
++    padding: 10px;
++    box-shadow: 0px 0px 3px #131313;
++    border-radius: 8px;
++    border-bottom: 1px solid rgb(60, 60, 60);
++    border-right: 1px solid #363636;
+ }
+ 
+ 
+@@ -49,10 +62,11 @@
+     border: none;
+     font-family: Consolas;
+     width: 100% !important;
++    padding: 14px;
+     font-family: 'Inconsolata', 'Courier New', 'Consolas', 'sans-serif' ;
+     font-weight: 300;
+     min-height: 500px;
+-    color: #A8FA9D;
++    color: #BBD3B8;
+     margin: 0px  5px 5px 5px;
+     box-shadow: inset 0px 0px 9px #12181A;
+ }
+@@ -65,3 +79,5 @@
+     width: 12px;
+     color: #131313;
+ }
++
++
+Index: app/views/layouts/toolbar.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/views/layouts/toolbar.blade.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/views/layouts/toolbar.blade.php	(revision )
+@@ -1,4 +1,4 @@
+-<!--<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
++<div class="box-cell navbar navbar-inverse navbar-fixed-top" role="navigation">
+     <div class="container">
+         <div class="navbar-header">
+             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+@@ -7,19 +7,9 @@
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+             </button>
+-            <a class="navbar-brand" href="#"></a>
++            <a class="navbar-brand" href="#">GAUNT</a>
+         </div>
+         <div class="navbar-collapse collapse">
+-            <form class="navbar-form navbar-right" role="form">
+-                <div class="form-group">
+-                    <input type="text" placeholder="Email" class="form-control">
++        </div><!--/.navbar-collapse -->
+-                </div>
++    </div>
+-                <div class="form-group">
+-                    <input type="password" placeholder="Password" class="form-control">
+-                </div>
++</div>
+\ No newline at end of file
+-                <button type="submit" class="btn btn-success">Sign in</button>
+-            </form>
+-        </div><
+-    </div>
+-</div>
+--->
+\ No newline at end of file
+Index: app/models/Tag.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/models/Tag.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/models/Tag.php	(revision )
+@@ -5,12 +5,9 @@
+ 
+     protected $table = 'tags';
+ 
+-    public function getTagByName($tag) {
+-        $paste = Paste::where('token', '=', $token);
+-    }
+ 
+-    public function getTagByID($id) {
+-        return Tag::find($id)->firstOrFail();
++    public function getTagByPasteID($id) {
++        return Tag::where('paste_id', $id)->get();
+     }
+ 
+ }
+\ No newline at end of file
+Index: app/views/pasteform.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/views/pasteform.blade.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/views/pasteform.blade.php	(revision )
+@@ -3,6 +3,6 @@
+ {{ Form::open(array('id' => 'pasteform', 'action' => 'PasteController@createPaste')) }}
+     {{ Form::textarea('paste') }}
+     {{ Form::select('expire', array('10' => '10 Minutes', '60' => '1 Hour', '1440' => '1 Day', '0' => 'Never Expire'))}}
+-    {{ Form::submit('Paste')}}
++    {{ Form::submit('Paste', null, array('class' => 'btn btn-success'))}}
+ {{ Form::close() }}
+ </div>
+Index: app/views/layouts/sidebar.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/views/layouts/sidebar.blade.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/views/layouts/sidebar.blade.php	(revision )
+@@ -1,20 +1,24 @@
+-<div id="sidebar" lass="sidebar col-md-3">
++<div id="sidebar" class="box-cell">
+     <div class="">
+         <h1>GAUNT</h1>
+-        @if (isset($paste))
++        @if (isset($paste->paste))
+         <div class="metadata">
+             <div class="created-date">
+                 Created on: <span class="cell">{{{ date('F j, Y', strtotime($paste->created_at)) }}}</span>
+ 
+             </div>
+-        <div class="cell-content language">
+-                Language: <label class="cell label label-info">PHP</label>
++            <div class="tags">
++
++                Tags: 
++                @foreach ($paste->tags as $tag)
++                <a href="#"><span class="label label-warning">{{ $tag }}</span></a>
++                @endforeach
+             </div>
+         </div>
+         @endif
+         <div class="fork-btn">
+             <button class="btn btn-success">Create a new paste</button>
+-            @if (isset($paste)) <button class="btn btn-info">Fork this paste</button> @endif
++            @if (isset($paste->paste)) <button class="btn btn-info">Fork this paste</button> @endif
+         </div>
+     </div>
+ </div>
+Index: app/views/showPaste.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/views/showPaste.blade.php	(revision 33ab2e795a042e0672b53ecd8456565e8a325f73)
++++ app/views/showPaste.blade.php	(revision )
+@@ -2,12 +2,16 @@
+ 
+ 
+ @section('content')
++@if (isset($paste->paste))
++<div class="col-lg-7">
+-<div id="paste">
++    <div id="paste">
+ 
+-    <div class="source">
+-        <pre class="brush: php">
+-        {{{ $paste->paste }}}
+-        </pre>
+-    </div>
+-</div>
++        <div class="source">
++            <pre class="brush: php">
++            {{{ $paste->paste }}}
++            </pre>
++            </div>
++        </div>
+-@endsection
+\ No newline at end of file
++    </div>
++</div>
++@endif

@@ -31,12 +31,13 @@
 <![endif]-->
 
 @include('layouts.toolbar')
-<div class="col-lg-9">
-@yield('content')
-</div>
-@include('layouts.sidebar')
-</div>
+<div class="container">
+    @yield('content')
 
+    <div class="col-md-4">
+    @include('layouts.sidebar')
+    </div>
+</div>
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

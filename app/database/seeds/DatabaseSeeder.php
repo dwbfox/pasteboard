@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder {
 				</html>
 PASTE;
 			$examplePaste->token = Str::random(40);
+            $examplePaste->private = rand(0, 1);
+            $examplePaste->language = 'PHP';
 			$examplePaste->delete_token = Str::random(40);
 			$examplePaste->save();
 

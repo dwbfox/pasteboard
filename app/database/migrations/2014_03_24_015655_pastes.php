@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class GeneratePasteTable extends Migration {
+class Pastes extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -16,9 +16,12 @@ class GeneratePasteTable extends Migration {
 		{
 			$table->increments('id');
 			$table->longText('paste');
+			$table->tinyInteger('private')->default(0);
 			$table->string('token', 60)->unique();
 			$table->timestamps();
-			$table->string('delete_token', 60)->unique();
+            $table->unsignedInteger('lang_id');
+            $table->foreign('lang_id')->references('id')->on('languages');
+            $table->string('delete_token', 60)->unique();
 		});
 	}
 
@@ -29,6 +32,10 @@ class GeneratePasteTable extends Migration {
 	 */
 	public function down()
 	{
+        Schema::table('pastes', function(Blueprint $table) {
+           $table->dropForeign('pastes_lang_id_foreign');
+        });
+
 		Schema::dropIfExists('pastes');
 	}
 

@@ -1,8 +1,7 @@
 <?php
 
-class PasteController extends \BaseController {
+class TagController extends \BaseController {
 
-	public $restful = true;
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -20,7 +19,7 @@ class PasteController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('pasteForm');
+		//
 	}
 
 	/**
@@ -36,32 +35,12 @@ class PasteController extends \BaseController {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  str  $token
+	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($token, $raw = false)
+	public function show($id)
 	{
-		var_dump($raw);
-        // Get the requested paste 
-        $pasteModel = new Paste();
-        $pasteResults = $pasteModel->getPasteByToken($token);
-
-        $results = new StdClass;
-        $results->paste = $pasteResults->paste;
-        $results->created_at = $pasteResults->created_at;
-
-        // Get the tags for the paste
-        $tagModel = new Tag();
-
-        // Attach it to the paste
-        $tagResults =  $tagModel->getTagByPasteID($pasteResults->id);
-
-        foreach ($tagResults as $key => $tag) {
-            $results->tags[] = $tag->tag;
-        }
-
-        // Render the view
-        return View::make('showPaste')->with('paste', $results);
+		//
 	}
 
 	/**
