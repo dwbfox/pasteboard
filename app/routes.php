@@ -13,13 +13,18 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+    Redirect::to('/paste');
+});
+
+Route::get('/paste', function()
+{
+    Redirect::to('/paste');
 });
 
 
 // Paste pages
 Route::pattern('token', '[A-Za-z0-9]+');
-Route::get('/paste/new', 'PasteController@create');
+Route::get('/paste/new', array('as' => 'new', 'uses' => 'PasteController@create'));
 Route::get('/paste/{token}', 'PasteController@show');
 Route::get('/paste/{token/raw}', 'PasteController@show', array('raw' => true));
 Route::get('/paste/delete/{token}', 'PasteController@delete');

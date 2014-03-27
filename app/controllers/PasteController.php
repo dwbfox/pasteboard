@@ -20,7 +20,7 @@ class PasteController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('pasteForm');
+		return View::make('pasteform');
 	}
 
 	/**

@@ -10,26 +10,20 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Eloquent::unguard();
+        DB::table('tags')->truncate();
+        //DB::table('pastes')->truncate();
 
+		$faker = Faker\Factory::create();
 		$paste_count = 10;
 
 		for ($i = 0; $i < $paste_count; $i++) {
 
 			// Generate the paste
 			$examplePaste = new Paste();
-			$examplePaste->paste = <<<PASTE
-				<html>
-					<head>
-					<title>PHP Test</title>
-					</head>
-					<body>
-						<?php echo '<p>Hello World</p>'; ?> 
-					</body>
-				</html>
-PASTE;
+			$examplePaste->paste = $faker->paragraph;
 			$examplePaste->token = Str::random(40);
             $examplePaste->private = rand(0, 1);
-            $examplePaste->language = 'PHP';
+            $examplePaste->lang_id = 5;
 			$examplePaste->delete_token = Str::random(40);
 			$examplePaste->save();
 

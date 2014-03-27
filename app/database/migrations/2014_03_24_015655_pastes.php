@@ -20,7 +20,6 @@ class Pastes extends Migration {
 			$table->string('token', 60)->unique();
 			$table->timestamps();
             $table->unsignedInteger('lang_id');
-            $table->foreign('lang_id')->references('id')->on('languages');
             $table->string('delete_token', 60)->unique();
 		});
 	}

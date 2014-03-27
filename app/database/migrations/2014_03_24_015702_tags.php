@@ -15,8 +15,6 @@ class Tags extends Migration {
         Schema::create('tags', function($table) {
             $table->increments('id');
             $table->unsignedInteger('paste_id');
-            $table->foreign('paste_id')->references('id')->on('pastes')
-                  ->onDelete('cascade')->onUpdate('cascade');
             $table->string('tag');
             $table->timestamps();
         });
