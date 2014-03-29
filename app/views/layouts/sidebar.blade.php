@@ -15,11 +15,13 @@
         </div>
     </div>
 
-    <div class="box-cell">
+    <div class="box-cell meta">
         @include('pastemetablock')
         <div class="fork-btn">
-            <div><button class="btn btn-success">Create a new paste</button></div>
-            @if (isset($paste->paste))<div><button class="btn btn-info">Fork this paste</button></div>@endif
+            <div><button class="btn btn-success"><i class="fa fa-plus-circle"></i> Create a new paste</button></div>
+            @if (isset($paste->paste))
+            <div><button class="btn btn-success"><i class="fa fa-code-fork"></i> Fork this paste</button></div>
+            @endif
         </div>
     </div>
 

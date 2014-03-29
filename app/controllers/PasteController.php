@@ -62,10 +62,10 @@ class PasteController extends \BaseController {
             $results->tags[] = $tag->tag;
         }
 
-        $latestPastes = $pasteModel->getLatestPastes();
+        //$latestPastes = $pasteModel->getLatestPastes();
 
         // Render the view
-        return View::make('showPaste', array('paste' => $results, 'latest' => $latestPastes));
+        return View::make('showPaste', array('paste' => $results));
 	}
 
 	/**

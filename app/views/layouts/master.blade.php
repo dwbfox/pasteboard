@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>{{ $site_name }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,12 +17,13 @@
             padding-bottom: 20px;
         }
     </style>
-<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('vendor/syntaxhighlighter/styles/shCore.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('vendor/highlightjs/styles/paraiso.dark.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('vendor/syntaxhighlighter/styles/shCoreRDark.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('vendor/fontawesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
-
     <script src="{{ URL::asset('js/vendor/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
 </head>
 <body>
@@ -41,7 +42,8 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="{{ URL::asset('js/vendor/bootstrap.min.js') }}"></script>
-<script src="{{ URL::asset('js/vendor/highlight.pack.js') }}"></script>
+<script src="{{ URL::asset('vendor/highlightjs/highlight.pack.js') }}"></script>
+<script src="{{ URL::asset('vendor/sticky/jquery.sticky.js') }}"></script>
 <script src="{{ URL::asset('js/plugins.js') }}"></script>
 
 <!-- ShareThis -->

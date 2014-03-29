@@ -28,7 +28,7 @@ class Paste extends \Eloquent {
      * @param  integer $count Number of pastes to return
      * @return StdClass  The paste object
      */
-    public function getLatestPastes($count = 5) {
+    public static function getLatestPastes($count = 5) {
         return Paste::where('private', '!=', 1)
         ->join('tags', 'pastes.id', '=', 'tags.paste_id')
         ->orderBy('pastes.created_at', 'desc')

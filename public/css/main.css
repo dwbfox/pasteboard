@@ -10,13 +10,26 @@ body {
     background: #DDDDDD;
     color: rgb(92, 92, 92);
     padding-top: 71px;
+    font-family: 'Maven Pro', sans-serif;
     padding-bottom: 23px;
 }
 
 .navbar {
-    background: #1B2426 !important;
+    background: #0091B1 !important;
     border: none !important;
-    border-bottom: 1px solid rgb(46, 46, 46) !important;
+}
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+    color: white;
+    font-size: 2.8em;
+}
+
+.nav li a {
+    color: white;
+    font-size: 1.1em;
+}
+.nav li a:hover {
+    background: rgb(0, 194, 255);
 }
 
 .cell {
@@ -84,6 +97,7 @@ pre, code {
 
 #sidebar .box-cell {
     margin-bottom: 11px;
+    background: 0;
 }
 
 .latest-pastes .latest-paste {
@@ -92,4 +106,9 @@ pre, code {
 }
 .latest-pastes .latest-paste:hover {
     background: #C7FFFD;
+}
+
+#sidebar .metadata input {
+  width: 89%;
+  margin-left: 10px;
 }

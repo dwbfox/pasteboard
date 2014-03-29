@@ -11,6 +11,18 @@
 |
 */
 
+
+
+View::composer('*', function($view)
+{
+    $view->with('latest', Paste::getLatestPastes());
+});
+
+View::composer('*', function($view) {
+$site_name = 'Gaunt';
+    $view->with('site_name', $site_name);
+});
+
 // Paste pages
 Route::pattern('token', '[A-Za-z0-9]+');
 Route::get('/paste/new', array('as' => 'new', 'uses' => 'PasteController@create'));
@@ -25,12 +37,12 @@ Route::get('tags/{tag}', 'TagController@show');
 
 Route::get('/', function()
 {
-    Redirect::to('new');
+    return Redirect::route('new');
 });
 
 Route::get('/paste', function()
 {
-    Redirect::to('new');
+    return Redirect::route('new');
 });
 
 
