@@ -3,15 +3,16 @@
 
 @section('content')
 @if (isset($paste->paste))
-<div class="col-lg-7">
+<div class="paste-wrapper">
     <div id="paste">
 
         <div class="source">
-            <pre class="brush: php">
-            {{{ $paste->paste }}}
+            <pre class="">
+            {{{ htmlspecialchars($paste->paste) }}}
             </pre>
             </div>
         </div>
     </div>
 </div>
 @endif
+@endsection

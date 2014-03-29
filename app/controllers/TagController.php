@@ -40,7 +40,8 @@ class TagController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$pastes = Paste::getPastesByTagID($id)
+		dd($pastes);
 	}
 
 	/**

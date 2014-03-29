@@ -1,24 +1,31 @@
-<div id="sidebar" class="box-cell">
-    <div class="">
-        <h1>GAUNT</h1>
-        @if (isset($paste->paste))
-        <div class="metadata">
-            <div class="created-date">
-                Created on: <span class="cell">{{{ date('F j, Y', strtotime($paste->created_at)) }}}</span>
+<div id="sidebar">
+    <div class="box-cell">
+        @include('aboutbloc')
+    </div>
 
-            </div>
-            <div class="tags">
-
-                Tags: 
-                @foreach ($paste->tags as $tag)
-                <a href="#"><span class="label label-warning">{{ $tag }}</span></a>
-                @endforeach
-            </div>
-        </div>
-        @endif
-        <div class="fork-btn">
-            <button class="btn btn-success">Create a new paste</button>
-            @if (isset($paste->paste)) <button class="btn btn-info">Fork this paste</button> @endif
+     <div class="box-cell">
+        <h4>Sharing is caring</h4>
+        <div class="share-this">
+            <span class='st_sharethis_large' displayText='ShareThis'></span>
+            <span class='st_facebook_large' displayText='Facebook'></span>
+            <span class='st_twitter_large' displayText='Tweet'></span>
+            <span class='st_linkedin_large' displayText='LinkedIn'></span>
+            <span class='st_pinterest_large' displayText='Pinterest'></span>
+            <span class='st_email_large' displayText='Email'></span>
         </div>
     </div>
+
+    <div class="box-cell">
+        @include('pastemetablock')
+        <div class="fork-btn">
+            <div><button class="btn btn-success">Create a new paste</button></div>
+            @if (isset($paste->paste))<div><button class="btn btn-info">Fork this paste</button></div>@endif
+        </div>
+    </div>
+
+    <div class="box-cell">
+        @include('latestpasteblock')
+    </div>
+
+
 </div>

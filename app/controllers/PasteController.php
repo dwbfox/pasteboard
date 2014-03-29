@@ -30,8 +30,10 @@ class PasteController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+	
 	}
+
+
 
 	/**
 	 * Display the specified resource.
@@ -41,7 +43,6 @@ class PasteController extends \BaseController {
 	 */
 	public function show($token, $raw = false)
 	{
-		var_dump($raw);
         // Get the requested paste 
         $pasteModel = new Paste();
         $pasteResults = $pasteModel->getPasteByToken($token);
@@ -49,6 +50,7 @@ class PasteController extends \BaseController {
         $results = new StdClass;
         $results->paste = $pasteResults->paste;
         $results->created_at = $pasteResults->created_at;
+        $results->token = $pasteResults->token;
 
         // Get the tags for the paste
         $tagModel = new Tag();
@@ -60,8 +62,10 @@ class PasteController extends \BaseController {
             $results->tags[] = $tag->tag;
         }
 
+        $latestPastes = $pasteModel->getLatestPastes();
+
         // Render the view
-        return View::make('showPaste')->with('paste', $results);
+        return View::make('showPaste', array('paste' => $results, 'latest' => $latestPastes));
 	}
 
 	/**

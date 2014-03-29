@@ -31,72 +31,29 @@
 <![endif]-->
 
 @include('layouts.toolbar')
-<div class="container">
+    <div class="content col-sm-9">
     @yield('content')
-
-    <div class="col-md-4">
+    </div>
+    <div class="col-sm-3">
     @include('layouts.sidebar')
     </div>
-</div>
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{ URL::asset('js/vendor/jquery-1.11.0.min.js') }}'"><\/script>')</script>
 <script src="{{ URL::asset('js/vendor/bootstrap.min.js') }}"></script>
+<script src="{{ URL::asset('js/vendor/highlight.pack.js') }}"></script>
 <script src="{{ URL::asset('js/plugins.js') }}"></script>
-<script src="{{ URL::asset('js/main.js') }}"></script>
+
+<!-- ShareThis -->
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "dcbb5314-0882-462c-82bf-972f3db7244c", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
+
 <!-- Syntax Highlighter -->
-<script src="{{ URL::asset('vendor/syntaxhighlighter/scripts/shCore.js')}}"></script>
-<script src="{{ URL::asset('vendor/syntaxhighlighter/scripts/shAutoLoader.js') }}"></script>
-<script type="text/javascript">
-    function path()
-    {
-        var args = arguments,
-            result = []
-            ;
+<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script src="{{ URL::asset('js/main.js') }}"></script>
 
-        for(var i = 0; i < args.length; i++)
-            result.push(args[i].replace('@', '{{ URL::asset('/') }}vendor/syntaxhighlighter/scripts/'  ));
-
-        return result
-    };
-
-    SyntaxHighlighter.autoloader.apply(null, path(
-        'applescript            @shBrushAppleScript.js',
-        'actionscript3 as3      @shBrushAS3.js',
-        'bash shell             @shBrushBash.js',
-        'coldfusion cf          @shBrushColdFusion.js',
-        'cpp c                  @shBrushCpp.js',
-        'c# c-sharp csharp      @shBrushCSharp.js',
-        'css                    @shBrushCss.js',
-        'delphi pascal          @shBrushDelphi.js',
-        'diff patch pas         @shBrushDiff.js',
-        'erl erlang             @shBrushErlang.js',
-        'groovy                 @shBrushGroovy.js',
-        'java                   @shBrushJava.js',
-        'jfx javafx             @shBrushJavaFX.js',
-        'js jscript javascript  @shBrushJScript.js',
-        'perl pl                @shBrushPerl.js',
-        'php                    @shBrushPhp.js',
-        'text plain             @shBrushPlain.js',
-        'py python              @shBrushPython.js',
-        'ruby rails ror rb      @shBrushRuby.js',
-        'sass scss              @shBrushSass.js',
-        'scala                  @shBrushScala.js',
-        'sql                    @shBrushSql.js',
-        'vb vbnet               @shBrushVb.js',
-        'xml xhtml xslt html    @shBrushXml.js'
-    ));
-    SyntaxHighlighter.all();
-</script>
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-        e.src='//www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X');ga('send','pageview');
-</script>
 </body>
 </html>
