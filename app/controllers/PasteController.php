@@ -30,7 +30,16 @@ class PasteController extends \BaseController {
 	 */
 	public function store()
 	{
-	
+	   $validation = array(
+            'expire' => 'Required|Numeric',
+            'Paste' => 'Required|AlphaNum'
+        );
+
+       $validator = Validator::make($validation);
+       if ( $validator->fails()) {
+            return 'Nastay. You failed. you Cray-cray';
+       }
+
 	}
 
 
@@ -51,6 +60,7 @@ class PasteController extends \BaseController {
         $results->paste = $pasteResults->paste;
         $results->created_at = $pasteResults->created_at;
         $results->token = $pasteResults->token;
+        $results->private = $pasteResults->private;
 
         // Get the tags for the paste
         $tagModel = new Tag();

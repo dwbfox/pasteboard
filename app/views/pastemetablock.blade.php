@@ -2,11 +2,14 @@
     <div class="metadata">
 
         <div class="created-date">
-            Created on: <span class="cell">{{{ date('F j, Y', strtotime($paste->created_at)) }}}</span>
+            Created on: <span class="">{{{ date('F j, Y', strtotime($paste->created_at)) }}}</span>
         </div>
-        
+
+        <div class="priviacy">
+            Visibility: <i title="{{ ($paste->private === 1) ? 'Private' : 'Public' }}" class="fa {{ ($paste->private === 1) ? 'fa-eye-slash' : 'fa-eye' }}"></i>
+        </div>
         <div class="permalink">
-        <i class="fa fa-chain"></i><input type="text" value="{{ route('show', $paste->token) }}">
+        <i class="fa fa-chain"></i><input class="form-control" type="text" value="{{ route('show', $paste->token) }}">
         </div>
 
 

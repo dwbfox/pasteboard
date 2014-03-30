@@ -1,6 +1,7 @@
 <div class="latest-pastes">
     <h3>Latest pastes</h3>
     @if (isset($latest))
+        {{ dd($latest) }}
         @foreach ($latest as $key => $paste)
             <div class="latest-paste">
             <label class="label label-warning">{{ $paste->tag}}</label> 

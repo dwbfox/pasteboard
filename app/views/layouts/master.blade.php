@@ -20,8 +20,8 @@
     <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('vendor/highlightjs/styles/paraiso.dark.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('vendor/syntaxhighlighter/styles/shCoreRDark.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('vendor/highlightjs/styles/idea.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('vendor/syntaxhighlighter/styles/shCore.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('vendor/fontawesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
     <script src="{{ URL::asset('js/vendor/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
@@ -53,7 +53,6 @@
 
 
 <!-- Syntax Highlighter -->
-<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 <script src="{{ URL::asset('js/main.js') }}"></script>
 

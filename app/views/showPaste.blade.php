@@ -8,7 +8,7 @@
 
         <div class="source">
             <pre class="">
-            {{{ htmlspecialchars($paste->paste) }}}
+            {{{ $paste->paste }}}
             </pre>
             </div>
         </div>

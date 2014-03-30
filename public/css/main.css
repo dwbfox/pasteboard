@@ -109,6 +109,11 @@ pre, code {
 }
 
 #sidebar .metadata input {
-  width: 89%;
+  width: 91%;
+  display: inline-block;
   margin-left: 10px;
+}
+
+#paste > .source > pre {
+    min-height: 500px;
 }
