@@ -34,11 +34,12 @@ class Paste extends \Eloquent {
      * @return StdClass  The paste object
      */
     public function getLatestPastes($count = 5) {
-        return $this->whereHas('tags', function($query) use ($count) {
-            $query->where('private', '!=', 1)
-                    ->orderBy('created_at', 'desc')
-                     ->take($count);
-        })->get();
+        $pastes =  $this->with('tags')
+                ->where('private', '!=', 1)
+                ->take($count)
+                ->get();
+        return $pastes;
     }
+
 
 }

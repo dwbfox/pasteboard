@@ -1,10 +1,11 @@
 <div class="latest-pastes">
     <h3>Latest pastes</h3>
     @if (isset($latest))
-        {{ dd($latest) }}
         @foreach ($latest as $key => $paste)
             <div class="latest-paste">
-            <label class="label label-warning">{{ $paste->tag}}</label> 
+            @foreach ($paste->tags as $tag)
+              <label class="label label-warning">{{ $tag->tag}}</label> 
+            @endforeach
             <a href="{{ route('show', $paste->token) }}">{{ Str::limit($paste->token, 3) }} </a>
             Created on: <span class="">{{{ date('F j, Y', strtotime($paste->created_at)) }}}</span>
 

@@ -39,7 +39,10 @@
     @include('layouts.sidebar')
     </div>
 
-
+    <footer>
+    <p>{{ $site_name}} - Text hosting as a service </p>
+    <p>Copyright &copy; {{ date('Y') }}. All Rights Reserved.</p>
+    </footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="{{ URL::asset('js/vendor/bootstrap.min.js') }}"></script>
 <script src="{{ URL::asset('vendor/highlightjs/highlight.pack.js') }}"></script>
