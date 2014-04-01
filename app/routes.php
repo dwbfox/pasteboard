@@ -17,8 +17,6 @@ View::composer('*', function($view)
 {
     $p = new Paste();
     $paste = $p->getLatestPastes();
-    dd($paste);
-    return;
     $view->with('latest', $paste);
 });
 
