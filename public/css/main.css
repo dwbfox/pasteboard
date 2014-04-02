@@ -117,3 +117,15 @@ pre, code {
 #paste > .source > pre {
     min-height: 500px;
 }
+
+footer {
+    clear: both;
+}
+
+footer p {
+    text-align: center;
+    font-size: .8em;
+    padding: 0px;
+    margin-bottom: 0px;
+    color: #999999;
+}

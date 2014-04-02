@@ -16,11 +16,11 @@ class Pastes extends Migration {
 		{
 			$table->increments('id');
 			$table->longText('paste');
+			$table->dateTime('expire');
 			$table->string('title', 255);
 			$table->tinyInteger('private')->default(0);
 			$table->string('token', 60)->unique();
 			$table->timestamps();
-            $table->unsignedInteger('lang_id');
             $table->string('delete_token', 60)->unique();
 		});
 	}
@@ -32,9 +32,6 @@ class Pastes extends Migration {
 	 */
 	public function down()
 	{
-        Schema::table('pastes', function(Blueprint $table) {
-           $table->dropForeign('pastes_lang_id_foreign');
-        });
 
 		Schema::dropIfExists('pastes');
 	}

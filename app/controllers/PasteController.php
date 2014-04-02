@@ -13,23 +13,11 @@ class PasteController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
+	public function showForm() {
 		return View::make('pasteform');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
+	public function create() {
 	   $validation = array(
             'expire' => 'Required|Numeric',
             'Paste' => 'Required|AlphaNum'
@@ -39,6 +27,16 @@ class PasteController extends \BaseController {
        if ( $validator->fails()) {
             return 'Nastay. You failed. you Cray-cray';
        }
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+
 
 	}
 
