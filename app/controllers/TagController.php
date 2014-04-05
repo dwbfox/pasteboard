@@ -40,8 +40,10 @@ class TagController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$pastes = Paste::getPastesByTagID($id)
-		dd($pastes);
+		$tag = new Tag();
+		$pastes = $tag->getPastesByTagID($id);
+		Debugbar::warning($pastes);	
+		return View::make('taglisting')->with('pastes', $pastes);
 	}
 
 	/**

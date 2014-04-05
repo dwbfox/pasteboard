@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder {
 			// Generate the paste
 			$examplePaste = new Paste();
 			$examplePaste->paste = $faker->paragraph;
+			$examplePaste->title = $faker->realText(46);
 			$examplePaste->token = Str::random(40);
             $examplePaste->private = rand(0, 1);
-            $examplePaste->lang_id = 5;
 			$examplePaste->delete_token = Str::random(40);
 			$examplePaste->save();
 

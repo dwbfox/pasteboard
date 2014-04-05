@@ -13,29 +13,16 @@
 
 
 
-View::composer('*', function($view)
-{
-    $p = new Paste();
-    $paste = $p->getLatestPastes();
-    $view->with('latest', $paste);
-});
-
-View::composer('*', function($view) {
-$site_name = 'Gaunt';
-    $view->with('site_name', $site_name);
-});
-
 // Paste pages
 Route::pattern('token', '[A-Za-z0-9]+');
-Route::get('/paste/new', array('as' => 'new', 'uses' => 'PasteController@showForm'));
-Route::post('/paste/new', array('as' => '', 'uses' => 'PasteController@create'));
+Route::get('/paste/create', array('as' => 'new', 'uses' => 'PasteController@showForm'));
 Route::get('/paste/{token}', array('as' => 'show', 'uses' => 'PasteController@show'));
 Route::get('/paste/{token/raw}', 'PasteController@show', array('raw' => true));
 Route::get('/paste/delete/{token}', 'PasteController@delete');
 
 // Tag pages
-Route::pattern('tag', '[A-Za-z0-9+-_]');
-Route::get('tags/{tag}', 'TagController@show');
+Route::pattern('tag', '[0-9+]+');
+Route::get('tags/{tag}', array('as' => 'byTag', 'uses' => 'TagController@show'));
 
 
 Route::get('/', function()
@@ -48,4 +35,14 @@ Route::get('/paste', function()
     return Redirect::route('new');
 });
 
+View::composer('*', function($view)
+{
+    $p = new Paste();
+    $paste = $p->getLatestPastes();
+    $view->with('latest', $paste);
+});
 
+View::composer('*', function($view) {
+$site_name = 'Gaunt';
+    $view->with('site_name', $site_name);
+});

@@ -17,7 +17,7 @@ class Pastes extends Migration {
 			$table->increments('id');
 			$table->longText('paste');
 			$table->dateTime('expire');
-			$table->string('title', 255);
+			$table->string('title', 46);
 			$table->tinyInteger('private')->default(0);
 			$table->string('token', 60)->unique();
 			$table->timestamps();

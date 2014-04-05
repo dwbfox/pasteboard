@@ -13,9 +13,6 @@ class PasteController extends \BaseController {
 		//
 	}
 
-	public function showForm() {
-		return View::make('pasteform');
-	}
 
 	public function create() {
 	   $validation = array(
@@ -27,6 +24,8 @@ class PasteController extends \BaseController {
        if ( $validator->fails()) {
             return 'Nastay. You failed. you Cray-cray';
        }
+
+		return View::make('pasteform');
 	}
 
 	/**
@@ -52,28 +51,13 @@ class PasteController extends \BaseController {
 	{
         // Get the requested paste 
         $pasteModel = new Paste();
-        $pasteResults = $pasteModel->getPasteByToken($token);
+        $results = $pasteModel->getPasteByToken($token);
 
-        $results = new StdClass;
-        $results->paste = $pasteResults->paste;
-        $results->created_at = $pasteResults->created_at;
-        $results->token = $pasteResults->token;
-        $results->private = $pasteResults->private;
-
-        // Get the tags for the paste
-        $tagModel = new Tag();
-
-        // Attach it to the paste
-        $tagResults =  $tagModel->getTagByPasteID($pasteResults->id);
-
-        foreach ($tagResults as $key => $tag) {
-            $results->tags[] = $tag->tag;
-        }
 
         //$latestPastes = $pasteModel->getLatestPastes();
 
         // Render the view
-        return View::make('showPaste', array('paste' => $results));
+        return View::make('showPaste', array('page_title' => $results->title, 'paste' => $results));
 	}
 
 	/**

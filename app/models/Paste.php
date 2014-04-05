@@ -6,7 +6,7 @@ class Paste extends \Eloquent {
     protected $table = 'pastes';
 
     public function tags() {
-        return $this->hasMany('Tag', 'paste_id');
+        return $this->hasMany('Tag');
     }
 
     /**
@@ -15,17 +15,9 @@ class Paste extends \Eloquent {
      * @return [type]        [description]
      */
     public function getPasteByToken($token) {
-        $result = $this->where('token',$token)->firstOrFail();
+        $result = $this->with('tags')
+        ->where('token',$token)->firstOrFail();
         return $result;
-    }
-
-    public function getPastesByTagID($id, $count=10) {
-        return $this->where('tags.id', $id) 
-        ->join('tags', 'pastes.id', '=', 'tags.paste_id')
-        ->orderBy('pastes.created_at', 'desc')
-        ->paginate(15)
-        ->take($count)
-        ->get();
     }
 
     /**
@@ -37,6 +29,7 @@ class Paste extends \Eloquent {
         $pastes =  $this->with('tags')
                 ->where('private', '!=', 1)
                 ->take($count)
+                ->orderBy('created_at', 'ASC')
                 ->get();
         return $pastes;
     }

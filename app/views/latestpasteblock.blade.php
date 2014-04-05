@@ -6,7 +6,7 @@
             @foreach ($paste->tags as $tag)
               <label class="label label-warning">{{ $tag->tag}}</label> 
             @endforeach
-            <a href="{{ route('show', $paste->token) }}">{{ Str::limit($paste->token, 3) }} </a>
+            <a href="{{ route('show', $paste->token) }}">{{ Str::limit($paste->title, 12) }} </a>
             Created on: <span class="">{{{ date('F j, Y', strtotime($paste->created_at)) }}}</span>
 
             </div>

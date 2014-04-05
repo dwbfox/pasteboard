@@ -9,27 +9,30 @@
 body {
     background: #DDDDDD;
     color: rgb(92, 92, 92);
-    padding-top: 71px;
     font-family: 'Maven Pro', sans-serif;
-    padding-bottom: 23px;
+}
+
+h1, h2, h3, h4, h5 {
+  color: rgb(0, 204, 255);
 }
 
 .navbar {
-    background: #0091B1 !important;
-    border: none !important;
+    background: white;
+    border-bottom: 1px solid rgb(207, 207, 207);
 }
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-    color: white;
+    color: rgb(0, 204, 255);
     font-size: 2.8em;
 }
 
 .nav li a {
-    color: white;
+    color: rgb(83, 83, 83);
     font-size: 1.1em;
 }
 .nav li a:hover {
     background: rgb(0, 194, 255);
+    color: white;
 }
 
 .cell {
@@ -86,7 +89,7 @@ pre, code {
 }
 
 
-.fork-btn button {
+button.btn {
   width: 169px;
   margin-bottom: 5px;
   box-shadow: none;
@@ -128,4 +131,46 @@ footer p {
     padding: 0px;
     margin-bottom: 0px;
     color: #999999;
+}
+
+.btn:hover {
+    background: rgb(255, 74, 74);
+}
+
+.paste-wrapper {
+  color: white;
+}
+
+.paste-wrapper .privacy {
+  color: white;
+}
+
+.paste-wrapper .created-date, .paste-wrapper {
+  padding: 5px;
+  border-radius: 3px;
+  color: white;
+}
+
+.paste-wrapper h1 {
+    display: inline-block;
+    font-size: 1.2em;
+    padding: 0px;
+    margin: 0px;
+    text-transform: uppercase;
+}
+.paste-wrapper .panel-heading {
+    background: #424242;
+    min-height: 39px;
+}
+
+.navbar-toggle .icon-bar {
+    background: gray;
+}
+
+.hljs {
+  display: block;
+  padding: 0.5em;
+  background: none !important;
+  color: #333;
+  border: none;
 }
