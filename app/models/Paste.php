@@ -29,7 +29,8 @@ class Paste extends \Eloquent {
         $pastes =  $this->with('tags')
                 ->where('private', '!=', 1)
                 ->take($count)
-                ->orderBy('created_at', 'ASC')
+                ->orderBy('created_at', 'DESC')
+                ->remember(30)
                 ->get();
         return $pastes;
     }

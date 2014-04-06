@@ -48,6 +48,9 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
+    if ($code === 404) {
+        return View::make('404', 404);
+    }
 	Log::error($exception);
 });
 

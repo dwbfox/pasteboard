@@ -70,7 +70,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* New paste page */
-#pasteform > textarea {
+.pasteform-wrapper  textarea {
     background: #FFFFFF;
     border: none;
     font-family: Consolas;
@@ -78,25 +78,38 @@ h1, h2, h3, h4, h5 {
     padding: 14px;
     font-family: 'Inconsolata', 'Courier New', 'Consolas', 'sans-serif' ;
     font-weight: 300;
-    min-height: 500px;
     color: #494949;
-    margin: 0px  5px 5px 5px;
-    box-shadow: 1px 0px 3px #C7C7C7;
+    margin: 16px  5px 5px 5px;
+    box-shadow: none;
+}
+
+@media screen and (min-width: 740px) {
+  min-height: 500px;
+}
+
+@media screen and (max-width: 740px) {
+  height: auto;
 }
 
 pre, code {
     font-family: 'Inconsolata', 'Courier New', 'Consolas', 'sans-serif' ;
 }
 
-
-button.btn {
+/* BUTTONS */
+input[type="submit"].btn, button.btn {
   width: 169px;
   margin-bottom: 5px;
+  color: white !important;
   box-shadow: none;
   background: rgb(0, 194, 255);
   border-radius: 0px;
   border: none;
 }
+
+input[type="submit"].btn:hover, .btn:hover {
+    background: rgb(255, 74, 74);
+}
+
 
 #sidebar .box-cell {
     margin-bottom: 11px;
@@ -133,9 +146,6 @@ footer p {
     color: #999999;
 }
 
-.btn:hover {
-    background: rgb(255, 74, 74);
-}
 
 .paste-wrapper {
   color: white;
@@ -151,7 +161,7 @@ footer p {
   color: white;
 }
 
-.paste-wrapper h1 {
+.panel-heading h1 {
     display: inline-block;
     font-size: 1.2em;
     padding: 0px;
@@ -161,6 +171,12 @@ footer p {
 .paste-wrapper .panel-heading {
     background: #424242;
     min-height: 39px;
+}
+
+.panel-heading {
+    background: #424242 !important;
+    min-height: 39px !important;
+    color: white !important;
 }
 
 .navbar-toggle .icon-bar {
@@ -173,4 +189,17 @@ footer p {
   background: none !important;
   color: #333;
   border: none;
+}
+
+p, .content {
+    font-family: sans-serif;
+}
+
+.input-error {
+  color: red;
+font-weight: bold;
+}
+
+.pasteform-wrapper input[type="text"] {
+    margin-bottom: 14px;
 }

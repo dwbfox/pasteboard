@@ -11,8 +11,9 @@
             <span class="created-date">
                 <i class="fa fa-calendar"></i> <span class="">{{{ date('F j, Y', strtotime($paste->created_at)) }}}</span>
             </span>
+            {{ Debugbar::info($paste->private)}}
             <span class="privacy">
-                Visibility: <i title="{{ ($paste->private === 1) ? 'Private' : 'Public' }}" class="fa {{ ($paste->private === 1) ? 'fa-eye-slash' : 'fa-eye' }}"></i>
+                Visibility: <i title="{{ ($paste->private == 1) ? 'Private' : 'Public' }}" class="fa {{ ($paste->private == 1) ? 'fa-eye-slash' : 'fa-eye' }}"></i>
             </span>
        </div>
       <div class="panel-body">
