@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     @if (isset($page_title))
-        <title>{{{ $page_title }}} | {{ $site_name }}</title>
+        <title>{{{ $page_title }}} - {{ Config::get('app.site_name') }}</title>
     @else
-        <title>{{ $site_name }}</title>
+        <title>{{ Config::get('app.site_name')  }}</title>
     @endif
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +50,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <footer>
-    <p>{{ $site_name}} - Text hosting as a service </p>
+    <p>{{ Config::get('app.site_name') }} - Text hosting as a service </p>
     <p>Copyright &copy; {{ date('Y') }}. All Rights Reserved.</p>
     </footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

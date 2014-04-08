@@ -43,7 +43,7 @@ class TagController extends \BaseController {
 		$tag = new Tag();
 		$pastes = $tag->getPastesByTagID($id);
 		Debugbar::warning($pastes);	
-		return View::make('taglisting')->with('pastes', $pastes);
+		return View::make('paste.taglist')->with('pastes', $pastes);
 	}
 
 	/**

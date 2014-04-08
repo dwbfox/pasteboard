@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 ClassLoader::addDirectories(array(
 
 	app_path().'/commands',
@@ -48,10 +50,11 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
-    if ($code === 404) {
-        return View::make('404', 404);
-    }
-	Log::error($exception);
+
+});
+
+App::error(function(ModelNotFoundException $e, $code) {
+    return Response::View('errors.404', 404);
 });
 
 /*

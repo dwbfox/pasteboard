@@ -44,6 +44,6 @@ View::composer('*', function($view)
 });
 
 View::composer('*', function($view) {
-$site_name = 'Gaunt';
+$site_name = Config::get('site_name');
     $view->with('site_name', $site_name);
 });

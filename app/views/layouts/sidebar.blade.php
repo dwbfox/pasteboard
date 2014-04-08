@@ -1,8 +1,10 @@
 <div id="sidebar">
     <div class="box-cell">
-        @include('aboutbloc')
+        @include('about')
     </div>
 
+    
+    @if (isset($paste->private) && $paste->private !== 1)
      <div class="box-cell">
         <h4>Sharing is caring</h4>
         <div class="share-this">
@@ -14,9 +16,10 @@
             <span class='st_email_large' displayText='Email'></span>
         </div>
     </div>
+    @endif
 
     <div class="box-cell meta">
-        @include('pastemetablock')
+        @include('paste.meta')
         <div class="fork-btn">
             <div><button class="btn btn-success"><i class="fa fa-plus-circle"></i> Create a new paste</button></div>
             @if (isset($paste->paste))
@@ -26,7 +29,7 @@
     </div>
 
     <div class="box-cell">
-        @include('latestpasteblock')
+        @include('paste.latest')
     </div>
 
 

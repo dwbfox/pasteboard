@@ -15,7 +15,7 @@ class PasteController extends \BaseController {
 
 
     public function create() {
-        return view::make('pasteform');
+        return view::make('paste.form');
     }
 
     /**
@@ -51,10 +51,8 @@ class PasteController extends \BaseController {
 
         if ($validator->fails()) {
             $messages = $validator->messages();
-            Debugbar::warning('Validation failed');
-            Debugbar::warning( $messages);
             Debugbar::warning( Input::all());
-            return View::make('pasteform')->withErrors($messages);
+            return View::make('paste.form')->withErrors($messages);
         };
 
         $new_paste = new Paste();
@@ -69,20 +67,26 @@ class PasteController extends \BaseController {
         $new_paste->expire = $expire_time;
 
 
-        // Check if tags are set
-        if (Input::has('hidden-tags')) {
-            Debugbar::info(Input::get('hidden-tags'));
-        }
 
 
         if (!$new_paste->save()) {
             Debugbar::error('Saving failed!');
-        } else {
-            Debugbar::info('Paste saved!');
-            Debugbar::info($new_paste->token);
-            Redirect::route('show')->with('token', $new_paste->token);
         }
-        return view::make('pasteform', array('page_title' => 'Create a paste'));
+        // Check if tags are set
+        if (Input::has('hidden-tags')) {
+            $tags = explode(' ', Input::get('hidden-tags'));
+            foreach ($tags as $key => $tag) {
+                $tag_model = new Tag();
+                $tag_model->tag = $tag;
+                $tag_model->paste_id = $new_paste->id;
+                $new_paste->tags()->save($tag_model);
+            }
+            Debugbar::info(Input::get('hidden-tags'));
+        }
+
+        Debugbar::info($new_paste->token);
+        Redirect::route('show')->with('token', $new_paste->token);
+        return view::make('paste.form', array('page_title' => 'Create a paste'));
 
     }
 
@@ -104,7 +108,7 @@ class PasteController extends \BaseController {
         //$latestPastes = $pasteModel->getLatestPastes();
 
         // Render the view
-        return View::make('showPaste', array('page_title' => $results->title, 'paste' => $results));
+        return View::make('paste.show', array('page_title' => $results->title, 'paste' => $results));
     }
 
     /**

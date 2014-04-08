@@ -11,7 +11,7 @@ class Tag extends Eloquent {
 
     public function getPastesByTagID($id, $count=10) {
         Debugbar::info(sprintf('Supplied ID: %s', $id));
-		$paste = $this->find($id)->paste()->take($count);
+		$paste = $this->find($id);
         return $paste;
   	}	
 

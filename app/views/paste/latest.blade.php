@@ -7,7 +7,7 @@
               <label class="label label-warning">{{ $tag->tag}}</label> 
             @endforeach
             <a href="{{ route('show', $paste->token) }}">{{ Str::limit($paste->title, 12) }} </a>
-            Created on: <span class="">{{{ date('F j, Y', strtotime($paste->created_at)) }}}</span>
+            Created  <span class="">{{{ \Carbon\Carbon::createFromTimeStamp(strtotime($paste->created_at))->diffForHumans() }}}</span>
 
             </div>
         @endforeach

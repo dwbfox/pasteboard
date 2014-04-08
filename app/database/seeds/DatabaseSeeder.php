@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder {
 
 		$faker = Faker\Factory::create();
 		$paste_count = 10;
+		$tags_per_paste = 344;
 
 		for ($i = 0; $i < $paste_count; $i++) {
 
@@ -27,11 +28,16 @@ class DatabaseSeeder extends Seeder {
 			$examplePaste->delete_token = Str::random(40);
 			$examplePaste->save();
 
+
 			// Attach some tags to the new paste
-			$exampleTag = new Tag();
-			$exampleTag->tag = 'PHP';
-			$exampleTag->paste_id = $examplePaste->id;
-			$exampleTag->save();
+			for ($i = 0; $i < $tags_per_paste; ++$i) {
+				$exampleTag = new Tag();
+				$exampleTag->tag = '#'.$faker->firstName;
+				$exampleTag->paste_id = $examplePaste->id;
+				$examplePaste->tags()->save($exampleTag);
+			}
+			print "Seeded paste with ID of " . $examplePaste->id . "\n";
+
 		}
 
 

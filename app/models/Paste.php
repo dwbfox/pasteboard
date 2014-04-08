@@ -4,6 +4,7 @@
 class Paste extends \Eloquent {
 
     protected $table = 'pastes';
+    protected $fillables = array('title, token, expire, created_at, updated_at');
 
     public function tags() {
         return $this->hasMany('Tag');
@@ -30,7 +31,7 @@ class Paste extends \Eloquent {
                 ->where('private', '!=', 1)
                 ->take($count)
                 ->orderBy('created_at', 'DESC')
-                ->remember(30)
+               // ->remember(3)
                 ->get();
         return $pastes;
     }

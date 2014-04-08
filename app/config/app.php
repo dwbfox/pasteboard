@@ -176,4 +176,6 @@ return array(
 		'Debugbar'		  => 'Barryvdh\Debugbar\Facade',
 	),
 
+	'site_name' => 'Rivent'
+
 );

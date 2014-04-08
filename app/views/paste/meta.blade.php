@@ -8,7 +8,7 @@
         {{ Debugbar::warning($paste->tags) }}
         <div class="tags">
         <i class="fa fa-tags"></i>
-        @if (isset($paste->tags) && is_array($paste->tags))
+        @if (isset($paste->tags))
                 @foreach ($paste->tags as $tag)
                 <a href="{{ route('byTag', $tag->id) }}"><span class="label label-warning">{{ $tag->tag }}</span></a>
                 @endforeach
