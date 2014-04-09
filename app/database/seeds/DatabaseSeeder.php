@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder {
 
 		$faker = Faker\Factory::create();
 		$paste_count = 10;
-		$tags_per_paste = 344;
 
 		for ($i = 0; $i < $paste_count; $i++) {
+			$tags_per_paste = rand(1,3);
 
 			// Generate the paste
 			$examplePaste = new Paste();
