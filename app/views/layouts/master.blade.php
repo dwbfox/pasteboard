@@ -18,6 +18,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('vendor/highlightjs/styles/idea.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('vendor/syntaxhighlighter/styles/shCore.css') }}">
@@ -42,10 +43,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <![endif]-->
 
 @include('layouts.toolbar')
-    <div class="content col-sm-9">
+    <div class="content col-sm-8">
     @yield('content')
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
     @include('layouts.sidebar')
     </div>
 

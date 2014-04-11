@@ -81,10 +81,8 @@ class PasteController extends \BaseController {
                 $tag_model->paste_id = $new_paste->id;
                 $new_paste->tags()->save($tag_model);
             }
-            Debugbar::info(Input::get('hidden-tags'));
         }
 
-        Debugbar::info($new_paste->token);
         Redirect::route('show')->with('token', $new_paste->token);
         return view::make('paste.form', array('page_title' => 'Create a paste'));
 

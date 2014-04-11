@@ -2,6 +2,10 @@
 
 return array(
 
+
+	'site_name' => 'Rivent',
+	
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode
@@ -37,7 +41,7 @@ return array(
 	| will be used by the PHP date and date-time functions. We have gone
 	| ahead and set this to a sensible default for you out of the box.
 	|
-	*/
+-	*/
 
 	'timezone' => 'UTC',
 
@@ -176,6 +180,5 @@ return array(
 		'Debugbar'		  => 'Barryvdh\Debugbar\Facade',
 	),
 
-	'site_name' => 'Rivent'
 
 );

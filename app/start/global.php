@@ -54,7 +54,7 @@ App::error(function(Exception $exception, $code)
 });
 
 App::error(function(ModelNotFoundException $e, $code) {
-    return Response::View('errors.404', 404);
+    return Response::View('errors.404', array(),  404);
 });
 
 /*
@@ -85,3 +85,4 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+\Debugbar::disable();

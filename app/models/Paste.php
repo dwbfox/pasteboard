@@ -31,7 +31,7 @@ class Paste extends \Eloquent {
                 ->where('private', '!=', 1)
                 ->take($count)
                 ->orderBy('created_at', 'DESC')
-               // ->remember(3)
+                ->remember(3)
                 ->get();
         return $pastes;
     }
