@@ -17,7 +17,7 @@
 
         <div class="">
             @if ($errors->has('tags'))
-             <div class="input-error">{{ $errors->first('title') }}</div>
+             <div class="input-error">{{ $errors->first('tags') }}</div>
             @endif
             {{ Form::label('tags', 'Tags') }} <small>Max. 5. Separated by either space or commas</small>
             {{ Form::text('tags', null, array('class' => 'form-control' )) }}

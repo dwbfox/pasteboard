@@ -1,3 +1,7 @@
+alert = function() {
+    console.trace();
+}
+
 $(function() {
 
 

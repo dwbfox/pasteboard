@@ -42,9 +42,10 @@ class PasteController extends \BaseController {
         
         $rules = array(
             'private' => 'numeric|required',
-            'title' => 'max:46|required',
+            'title' => 'max:46|required|alpha_num',
             'paste' =>  'required',
-            'expire' => 'required|numeric'
+            'expire' => 'required|numeric',
+            'tags'  => 'alpha_num'
         );
 
         $validator = Validator::make(Input::all(), $rules);
@@ -83,7 +84,10 @@ class PasteController extends \BaseController {
             }
         }
 
-        Redirect::route('show')->with('token', $new_paste->token);
+        if ($new_paste->id) {
+          return Redirect::to('show')->with('token', $new_paste->token);
+        }
+
         return view::make('paste.form', array('page_title' => 'Create a paste'));
 
     }

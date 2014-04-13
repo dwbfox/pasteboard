@@ -8,9 +8,9 @@
         {{ Debugbar::warning($paste->tags) }}
         <div class="tags">
         <i class="fa fa-tags"></i>
-        @if (isset($paste->tags) and sizeof($paste->tags) > 1)
+        @if (isset($paste->tags) and sizeof($paste->tags) > 0)
                 @foreach ($paste->tags as $tag)
-                <a href="{{ route('byTag', $tag->id) }}"><span class="label label-warning">{{ $tag->tag }}</span></a>
+                <a href="{{ route('byTag', $tag->id) }}"><span class="label label-warning">{{{ $tag->tag }}}</span></a>
                 @endforeach
         @else
             <span class="label label-info">none</span>
