@@ -45,7 +45,7 @@ class PasteController extends \BaseController {
             'title' => 'max:46|required|alpha_num',
             'paste' =>  'required',
             'expire' => 'required|numeric',
-            'tags'  => 'alpha_num'
+            'tags'  => 'max:6|alpha_num'
         );
 
         $validator = Validator::make(Input::all(), $rules);

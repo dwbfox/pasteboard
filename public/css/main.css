@@ -1,11 +1,4 @@
 
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
 body {
     background: #DDDDDD;
     color: rgb(92, 92, 92);
@@ -47,6 +40,10 @@ p, a{
     background: #F7F7F7 !important;
     padding: 10px;
     box-shadow: 1px 0px 3px #C7C7C7;
+}
+
+.box-cell h1, .box-cell h2, .box-cell h3 {
+  margin: 0;
 }
 
 
@@ -212,4 +209,6 @@ font-weight: bold;
 
 div.paste-info-block.pull-right {
     border-radius: 4px;
+    text-align: center;
 }
+
