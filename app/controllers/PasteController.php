@@ -45,6 +45,7 @@ class PasteController extends \BaseController {
             'title' => 'max:46|required|alpha_num',
             'paste' =>  'required',
             'expire' => 'required|numeric',
+            'private' => 'required|numeric',
             'tags'  => 'max:6|alpha_num'
         );
 
@@ -52,7 +53,6 @@ class PasteController extends \BaseController {
 
         if ($validator->fails()) {
             $messages = $validator->messages();
-            Debugbar::warning( Input::all());
             return View::make('paste.form')->withErrors($messages);
         };
 
