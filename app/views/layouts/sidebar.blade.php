@@ -21,7 +21,7 @@
     <div class="box-cell meta">
         @include('paste.meta')
         <div class="fork-btn">
-            <div><a class="btn btn-success" href="{{ URL::route('new') }}"><i class="fa fa-plus-circle"></i> Create a new paste</a></div>
+            <div><a class="btn btn-success" href="{{ URL::route('paste.new') }}"><i class="fa fa-plus-circle"></i> Create a new paste</a></div>
             @if (isset($paste->paste))
             <div><button class="btn btn-success"><i class="fa fa-code-fork"></i> Fork this paste</button></div>
             @endif

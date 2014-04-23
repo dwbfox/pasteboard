@@ -4,7 +4,7 @@
 class Paste extends \Eloquent {
 
     protected $table = 'pastes';
-    protected $fillables = array('title, token, expire, created_at, updated_at');
+    protected $guarded = array('token', 'expire', 'created_at', 'updated_at');
 
 
     
@@ -19,7 +19,9 @@ class Paste extends \Eloquent {
      */
     public function getPasteByToken($token) {
         $result = $this->with('tags')
-        ->where('token',$token)->firstOrFail();
+        ->where('token',$token)
+        ->remember(100)
+        ->firstOrFail();
         return $result;
     }
 
@@ -32,6 +34,7 @@ class Paste extends \Eloquent {
         $pastes =  $this->with('tags')
                 ->where('private', '!=', 1)
                 ->take($count)
+                ->remember(30)
                 ->orderBy('created_at', 'DESC')
                 ->get();
         return $pastes;

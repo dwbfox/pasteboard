@@ -85,7 +85,7 @@ class PasteController extends \BaseController {
         }
 
         if ($new_paste->id) {
-          return Redirect::to('show')->with('token', $new_paste->token);
+            return Redirect::route('paste.show',  $new_paste->token);
         }
 
         return view::make('paste.form', array('page_title' => 'Create a paste'));

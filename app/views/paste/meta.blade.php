@@ -2,7 +2,7 @@
     <div class="metadata">
 
         <div class="permalink">
-        <i class="fa fa-chain"></i><input class="form-control" type="text" value="{{ route('show', $paste->token) }}">
+        <i class="fa fa-chain"></i><input class="form-control" type="text" value="{{ route('paste.show', $paste->token) }}">
         </div>
 
         {{ Debugbar::warning($paste->tags) }}
