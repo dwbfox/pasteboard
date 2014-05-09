@@ -5,6 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateForeignRelation extends Migration {
 
+
     /**
      * Run the migrations.
      *
@@ -17,6 +18,12 @@ class CreateForeignRelation extends Migration {
             $table->foreign('paste_id')->references('id')->on('pastes')
                   ->onDelete('cascade')->onUpdate('cascade');
         });
+        /*
+        Schema::table('roles', function(Blueprint $table) {
+            $table->foreign('uid')->references('id')->on('users')
+                  ->onDelete('cascade')->onUpdate('cascade');
+        });
+        */
     }
 
     /**
@@ -29,6 +36,9 @@ class CreateForeignRelation extends Migration {
 
         Schema::table('tags', function(Blueprint $table) {
             $table->dropForeign('tags_paste_id_foreign');
+        });
+        Schema::table('users', function(Blueprint $table) {
+            $table->dropForeign('roles_uid_foreign');
         });
 
     }

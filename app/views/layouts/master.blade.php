@@ -43,10 +43,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <![endif]-->
 
 @include('layouts.toolbar')
-    <div class="content col-sm-8">
+    <div class="content col-sm-9">
     @yield('content')
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
     @include('layouts.sidebar')
     </div>
 

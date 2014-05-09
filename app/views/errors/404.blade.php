@@ -43,7 +43,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <![endif]-->
 
 @include('layouts.toolbar')
-    <div class="content col-sm-12">
+    <div class="content col-sm-4 offset2 text-center">
 <h1>404 - File Not found :-(</h1>
 <p>We're sorry, but the thing that you're looking for was unable to be retrieved. Please try again, or perhaps try
 consulting with Google. Whatever you do, the thing that you're looking for is not here. </p>

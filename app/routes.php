@@ -25,6 +25,8 @@ Route::get('/paste/delete/{token}', array('as' => 'paste.delete', 'uses' => 'Pas
 Route::pattern('tag', '[0-9+]+');
 Route::get('tags/{tag}', array('as' => 'byTag', 'uses' => 'TagController@show'));
 
+// Trending pastes
+Route::get('trending/{tag}', array('as' => 'trending', 'uses' => 'TrendingController@show'));
 
 Route::get('/', function()
 {
