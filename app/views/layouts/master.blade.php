@@ -41,19 +41,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
-
-@include('layouts.toolbar')
-    <div class="content col-sm-9">
-    @yield('content')
+<div class="page-wrapper">
+    @include('layouts.toolbar')
+    <div class="content-wrapper">
+        <div class="content col-lg-9">
+        @yield('content')
+        </div>
+        <div class="col-sm-3">
+        @include('layouts.sidebar')
+        </div>
     </div>
-    <div class="col-sm-3">
-    @include('layouts.sidebar')
-    </div>
-
     <footer>
     <p>{{ Config::get('app.site_name') }} - Text hosting as a service </p>
     <p>Copyright &copy; {{ date('Y') }}. All Rights Reserved.</p>
     </footer>
+</div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="{{ URL::asset('js/vendor/bootstrap.min.js') }}"></script>
 <script src="{{ URL::asset('vendor/highlightjs/highlight.pack.js') }}"></script>

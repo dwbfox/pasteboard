@@ -36,13 +36,10 @@ class PasteController extends \BaseController {
     public function store()
     {
 
-        if (Input::has('paste')) {
-            Debugbar::info('Paste data found');
-        }
         
         $rules = array(
             'private' => 'numeric|required',
-            'title' => 'max:46|required|alpha_num',
+            'title' => 'max:46|required',
             'paste' =>  'required',
             'expire' => 'required|numeric',
             'private' => 'required|numeric',

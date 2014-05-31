@@ -1,1 +1,201 @@
-.sitelink{font-family:'Open Sans',sans-serif;color:#2a6496}.cell-container{background:#f7f7f7 !important;padding:10px;box-shadow:1px 0 3px #c7c7c7}body{background:#ddd;color:#5c5c5c;font-family:'Maven Pro',sans-serif}p{font-family:'Open Sans',sans-serif}a{font-family:'Open Sans',sans-serif;color:#2a6496}.navbar{background:#424242;border-bottom:17px solid #1ab3e4}.navbar>.container .navbar-brand,.navbar>.container-fluid .navbar-brand{color:#47c2ea;font-size:2.8em}.nav li a{color:#feffff;box-shadow:none;font-size:1.1em}.nav li a:hover{background:#1ab3e4;color:#fff}.cell{background:#f7f7f7 !important;padding:10px;box-shadow:1px 0 3px #c7c7c7}.box-cell{background:#f7f7f7 !important;padding:10px;box-shadow:1px 0 3px #c7c7c7}.box-cell h1,.box-cell h2,.box-cell h3{margin:0}#paste{overflow-y:hidden !important;overflow-x:hidden !important}#sidebar .metadata div{margin-bottom:10px}.syntaxhighlighter{width:100% !important;margin:1em 0 1em 0 !important;position:relative !important;overflow-y:hidden !important;overflow-x:auto !important;font-size:.9em !important}.pasteform-wrapper textarea{background:#f1f1f1;border:none;font-family:Consolas;width:100% !important;padding:14px;font-family:'Inconsolata','Courier New','Consolas','sans-serif';font-weight:300;color:#494949;margin:16px 5px 5px 5px;box-shadow:none}@media screen and (min-width:740px){min-height:500px}@media screen and (max-width:740px){height:auto}pre,code{font-family:'Inconsolata','Courier New','Consolas','sans-serif'}.btn{width:169px;margin-bottom:5px;color:#fff !important;box-shadow:none;background:#1ab3e4;border-radius:0;border:none;text-align:left}input[type="submit"].btn:hover,.btn:hover{background:#1381a4}#sidebar .box-cell{margin-bottom:11px;background:0}.latest-pastes .latest-paste{margin-bottom:4px;list-style:none;padding:3px}.latest-pastes .latest-paste:hover{background:#c7fffd}#sidebar .metadata input{width:91%;display:inline-block;margin-left:10px}#paste>.source>pre{min-height:500px}footer{clear:both}footer p{text-align:center;font-size:.8em;padding:0;margin-bottom:0;color:#999}.paste-wrapper{color:#fff}.paste-wrapper .privacy{color:#fff}.paste-wrapper .created-date,.paste-wrapper{padding:5px;border-radius:3px;color:#fff}.panel-heading h1{display:inline-block;font-size:1.2em;padding:0;margin:0}.paste-wrapper .panel-heading{background:#424242;min-height:39px}.panel-heading{background:#424242 !important;min-height:39px !important;color:#fff !important}.navbar-toggle .icon-bar{background:#808080}.input-error{color:#f00;font-weight:bold}.pasteform-wrapper input[type="text"]{margin-bottom:14px}.alert .alert-info{background:#00bfe4 !important;color:#fff}div.paste-info-block.pull-right{border-radius:4px;text-align:center}.list-group-item latest-paste{text-align:left;width:30px}.badge.time-ago{width:100px;text-align:left}/*# sourceMappingURL=main.css.map */
+.sitelink {
+  font-family: 'Open Sans', sans-serif;
+  color: #2a6496;
+}
+.cell-container {
+  background: #f7f7f7 !important;
+  padding: 10px;
+  box-shadow: 1px 0px 3px #c7c7c7;
+}
+body {
+  background: #dddddd;
+  color: #5c5c5c;
+  font-family: 'Maven Pro', sans-serif;
+}
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+a {
+  font-family: 'Open Sans', sans-serif;
+  color: #2a6496;
+}
+.navbar {
+  background: #424242;
+  border-bottom: 17px solid #1ab3e4;
+}
+.navbar > .container .navbar-brand,
+.navbar > .container-fluid .navbar-brand {
+  color: #47c2ea;
+  font-size: 2.8em;
+}
+.nav li a {
+  color: #feffff;
+  box-shadow: none;
+  font-size: 1.1em;
+}
+.nav li a:hover {
+  background: #1ab3e4;
+  color: white;
+}
+.cell {
+  background: #f7f7f7 !important;
+  padding: 10px;
+  box-shadow: 1px 0px 3px #c7c7c7;
+}
+.box-cell {
+  background: #f7f7f7 !important;
+  padding: 10px;
+  box-shadow: 1px 0px 3px #c7c7c7;
+}
+.box-cell h1,
+.box-cell h2,
+.box-cell h3 {
+  margin: 0;
+}
+#paste {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+#sidebar .metadata div {
+  margin-bottom: 10px;
+}
+.syntaxhighlighter {
+  width: 100% !important;
+  margin: 1em 0 1em 0 !important;
+  position: relative !important;
+  overflow-y: hidden !important;
+  overflow-x: auto !important;
+  font-size: .9em !important;
+}
+/* New paste page */
+
+.pasteform-wrapper  textarea {
+  background: #f1f1f1;
+  border: none;
+  font-family: Consolas;
+  width: 100% !important;
+  padding: 14px;
+  font-family: 'Inconsolata', 'Courier New', 'Consolas', 'sans-serif';
+  font-weight: 300;
+  color: #494949;
+  margin: 16px  5px 5px 5px;
+  box-shadow: none;
+}
+@media screen and (min-width: 740px) {
+  min-height: 500px;
+}
+@media screen and (max-width: 740px) {
+  height: auto;
+}
+pre,
+code {
+  font-family: 'Inconsolata', 'Courier New', 'Consolas', 'sans-serif';
+}
+/* BUTTONS */
+
+.btn {
+  width: 169px;
+  margin-bottom: 5px;
+  color: white !important;
+  box-shadow: none;
+  background: #1ab3e4;
+  border-radius: 0px;
+  border: none;
+  text-align: left;
+}
+input[type="submit"].btn:hover,
+.btn:hover {
+  background: #1381a4;
+}
+#sidebar .box-cell {
+  margin-bottom: 11px;
+  background: 0;
+}
+.latest-pastes .latest-paste {
+  margin-bottom: 4px;
+  list-style: none;
+  padding: 3px;
+}
+.latest-pastes .latest-paste:hover {
+  background: #c7fffd;
+}
+#sidebar .metadata input {
+  width: 91%;
+  display: inline-block;
+  margin-left: 10px;
+}
+#paste > .source > pre {
+  min-height: 500px;
+}
+footer {
+  clear: both;
+}
+footer p {
+  text-align: center;
+  font-size: .8em;
+  padding: 0px;
+  margin-bottom: 0px;
+  color: #999999;
+}
+.paste-wrapper {
+  color: white;
+}
+.paste-wrapper .privacy {
+  color: white;
+}
+.paste-wrapper .created-date,
+.paste-wrapper {
+  padding: 5px;
+  border-radius: 3px;
+  color: white;
+}
+.panel-heading h1 {
+  display: inline-block;
+  font-size: 1.2em;
+  padding: 0px;
+  margin: 0px;
+}
+.paste-wrapper .panel-heading {
+  background: #424242;
+  min-height: 39px;
+}
+.panel-heading {
+  background: #424242 !important;
+  min-height: 39px !important;
+  color: white !important;
+}
+.navbar-toggle .icon-bar {
+  background: gray;
+}
+.input-error {
+  color: red;
+  font-weight: bold;
+}
+.pasteform-wrapper input[type="text"] {
+  margin-bottom: 14px;
+}
+.alert .alert-info {
+  background: #00bfe4 !important;
+  color: white;
+}
+div.paste-info-block.pull-right {
+  border-radius: 4px;
+  text-align: center;
+}
+.list-group-item latest-paste {
+  text-align: left;
+  width: 30px;
+}
+.badge.time-ago {
+  width: 100px;
+  text-align: left;
+}
+.alert {
+  box-shadow: none;
+  border: none;
+  border-radius: 0px;
+}
+.alert-info {
+  background: #1ab3e4;
+  color: white;
+}
