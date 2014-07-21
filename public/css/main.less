@@ -3,7 +3,7 @@
 
 // Main site swatch
 @headercolor: rgb(66, 66, 66);
-@themecolor: #424242;
+@themecolor: #A6D52E;
 @bodybackground: #DDDDDD;
 @linkcolor: darken(@themecolor, 20%);
 
@@ -28,6 +28,10 @@ p {
 a {
   font-family: 'Open Sans', sans-serif;
   .sitelink;
+}
+
+.label-warning {
+  background: darken(@themecolor, 10%);
 }
 
 .navbar {
@@ -74,6 +78,8 @@ a {
      overflow-y: hidden !important; 
      overflow-x: hidden !important; 
   }
+
+  #paste .hljs  > span { display: block; }
 
 #sidebar .metadata div {
     margin-bottom: 10px;
