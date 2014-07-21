@@ -1,20 +1,17 @@
 
 
-.sitelink {
-  font-family: 'Open Sans', sans-serif;
-  color: #2a6496;
-}
-
-.cell-container {
-    background: #F7F7F7 !important;
-    padding: 10px;
-    box-shadow: 1px 0px 3px #C7C7C7;
-}
 
 // Main site swatch
 @headercolor: rgb(66, 66, 66);
-@themecolor: #1AB3E4;
+@themecolor: #424242;
 @bodybackground: #DDDDDD;
+@linkcolor: darken(@themecolor, 20%);
+
+// Global link styling
+.sitelink {
+  font-family: 'Open Sans', sans-serif;
+  color: @linkcolor;
+}
 
 
 body {
@@ -63,6 +60,13 @@ a {
 
 .box-cell h1, .box-cell h2, .box-cell h3 {
   margin: 0;
+}
+
+
+.cell-container {
+    background: #F7F7F7 !important;
+    padding: 10px;
+    box-shadow: 1px 0px 3px #C7C7C7;
 }
 
 
@@ -243,4 +247,15 @@ div.paste-info-block.pull-right {
     background: @themecolor;
     color: white;
 
+}
+
+
+.tag-list-container .panel-heading {
+  margin-bottom: 10px;
+  background: #F1F1F1 !important;
+  height: auto;
+}
+
+.tag-list-container  {
+  list-style: none;
 }

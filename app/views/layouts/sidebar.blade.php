@@ -4,7 +4,7 @@
     </div>
 
     
-    @if (isset($paste->private) && $paste->private !== 1)
+    @if (!isset($paste->private) || $paste->private !== 1)
      <div class="box-cell">
         <h4>Sharing is caring</h4>
         <div class="share-this">

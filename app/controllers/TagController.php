@@ -38,11 +38,11 @@ class TagController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($tag)
 	{
-		$tag = new Tag();
-		$pastes = $tag->getPastesByTagID($id);
-		return View::make('paste.taglist')->with('tagged_pastes', $pastes);
+		$pastes = new Tag();
+		$pastes = $pastes->getPastesByTagName($tag);
+		return View::make('paste.taglist')->with(array('tagged_pastes' => $pastes, 'page_title' => 'Pastes tagged with ' . $tag));
 	}
 
 	/**

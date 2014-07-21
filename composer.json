@@ -6,6 +6,7 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"fzaninotto/faker": "1.4.*@dev",
+		"kotchuprik/laravel-pretty-dump": "dev-master",
 		"barryvdh/laravel-debugbar": "1.*"
 	},
 	"autoload": {
