@@ -15,6 +15,9 @@
                 <span class="privacy">
                     Visibility: <i title="{{ ($paste->private == 1) ? 'Private' : 'Public' }}" class="fa {{ ($paste->private == 1) ? 'fa-eye-slash' : 'fa-eye' }}"></i>
                 </span>
+                <span class="expires">
+                    Expires:  {{{ \Carbon\Carbon::createFromTimeStamp(strtotime($paste->expire))->diffForHumans() }}}
+                </span>
             </div>
        </div>
       <div class="panel-body">

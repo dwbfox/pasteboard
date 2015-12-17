@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'gaunt_dev',
-			'username'  => 'gaunt',
-			'password'  => 'w2NNveKRe7pE6Lha',
+			'database'  => 'gaunt',
+			'username'  => 'root',
+			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

@@ -28,15 +28,6 @@
     <script src="{{ URL::asset('js/vendor/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
 </head>
 <body>
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T5FNHG"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T5FNHG');</script>
-<!-- End Google Tag Manager -->
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -44,10 +35,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="page-wrapper">
     @include('layouts.toolbar')
     <div class="content-wrapper">
-        <div class="content col-lg-9">
+        <div class="content col-lg-9 col-md-9 col-sm-12">
         @yield('content')
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-12 col-md-3 col-lg-3">
         @include('layouts.sidebar')
         </div>
     </div>

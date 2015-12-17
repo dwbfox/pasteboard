@@ -21,11 +21,7 @@ Route::get('/', function()
 
 // Set globally accessible data to the views
 
-View::composer('*', function($view)
-{
-
-
-
+View::composer('*', function($view) {
 
     $p = new Paste();
     $paste = $p->getLatestPastes();

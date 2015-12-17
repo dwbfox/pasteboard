@@ -3,7 +3,7 @@
 return array(
 
 
-	'site_name' => 'Rivent',
+	'site_name' => 'PasteBoard',
 	
 
 	/*
