@@ -1,1 +1,1 @@
-## Gaunt - The No-Nonsense Pasteboard
+## PasteBoard - The no-nonsense, self-hosted text hosting service.
