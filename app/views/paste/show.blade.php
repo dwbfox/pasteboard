@@ -23,9 +23,7 @@
       <div class="panel-body">
         <div id="paste">
             <div class="source">
-                <pre class="">
-                {{{ $paste->paste }}}
-                </pre>
+                <pre class="">{{{ $paste->paste }}}</pre>
                 </div>
             </div>
         </div>
